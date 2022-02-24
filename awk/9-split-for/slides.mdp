@@ -1,0 +1,47 @@
+%title: AWK
+%author: xavki
+
+
+
+
+
+-> AWK : split <-
+=========
+
+
+
+<br>
+* variable : pas de $ juste son nom
+
+* tableau/array :sans $ et avec crochets tab[index]
+
+<br>
+* pratique pour faire des cumuls car on peut l'incrémenter pour fair eun print dans END
+
+<br>
+Exemple :
+
+```
+cat myfile.txt | 
+awk '{
+split($0,tab, " ");
+print tab[2]
+}'
+```
+
+---------------------------------------------------------------
+
+-> AWK : boucle for <-
+
+
+<br>
+
+* idem autres langages : for (i=1;i<=10;i++){print i}
+
+```
+cat myfile.txt | awk '{
+split($0,tab, "");
+for (i=1;i<=length($0);i++)
+{print tab[i]}
+}'
+```

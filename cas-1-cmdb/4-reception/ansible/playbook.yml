@@ -1,0 +1,10 @@
+- name: "[XAVKI] - maria"
+  hosts: mariadb
+  roles:
+    - mariadb
+
+- name: "[XAVKI] - cmdb"
+  hosts: cmdb
+  roles:
+    - mariadb
+    - cmdb

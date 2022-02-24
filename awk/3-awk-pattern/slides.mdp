@@ -1,0 +1,33 @@
+%title: AWK
+%author: xavki
+
+
+
+
+
+-> AWK : pattern et BEGIN <-
+=========
+
+
+
+<br>
+*  /pattern/ : rechercher un pattern
+
+* ! : pour inverser le pattern
+
+<br>
+* BEGIN : comment END mais en entête de tableau
+
+<br>
+* length() : nombre de caractères
+
+<br>
+Exemple :
+
+```
+cat myfile.txt | awk '
+BEGIN {print "\nListe des xavkistes :\n"};
+!/xavier/ {print $2"-> Ville : "$3" - Département: "$3" - long_prenom = "length($2)}
+END {print "\nLignes parcourues : "NR"\n"}
+'
+```

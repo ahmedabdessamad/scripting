@@ -1,0 +1,7 @@
+# cron collect déployé par ansible
+
+* * * * * root /opt/central/insert_into.sh
+
+# si tous les jours
+
+#00 23 * * * root /opt/central/insert_into.sh

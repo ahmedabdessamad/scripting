@@ -1,0 +1,86 @@
+
+- name : "[CENTRAL] - apt-get update"
+  apt:
+    update_cache: yes
+
+
+- name : "[CENTRAL] - install"
+  apt:
+    name: "{{ maria_packages }}"
+
+- name : "[CENTRAL] - start service"
+  service:
+    name: mariadb
+    state: started
+
+
+- name : "[CENTRAL] - install DB"
+  mysql_db:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ maria_databases }}"
+
+- name: "[CENTRAL] - change my.cnf"
+  lineinfile:
+    dest: "/etc/mysql/my.cnf"
+    line: "{{ item }}"
+  with_items:
+    - "[mysqld]"
+    - "bind-address  = 0.0.0.0"
+    - "# skip-networking"
+  notify: maria_restart
+
+- name: "[CENTRAL] - create user"
+  mysql_user:
+    name: "{{ maria_user }}"
+    password: "{{ maria_pwd }}"
+    priv: "*.*:ALL"
+    host: "%"
+
+- name: "[CENTRAL] - restart"
+  service:
+    name: mariadb
+    state: restarted
+    enabled: yes
+
+- name: "[CENTRAL] - create directory"
+  file:
+    path: /opt/central/
+    state: directory
+    mode: 0755
+
+- name: "[CENTRAL] - copy file appli"
+  copy:
+    src: central.py
+    dest: /opt/central/central.py
+    mode: 0755
+
+- name: "[CENTRAL] - create directory"
+  file:
+    path: /var/central
+    state: directory
+    mode: 0755
+
+- name: "[CENTRAL] - copy file service"
+  copy:
+    src: central.service
+    dest: /etc/systemd/system/central.service
+    mode: 0755
+
+- name: "[CENTRAL] - start service central"
+  service:
+    name: central
+    state: started
+
+- name: "[CENTRAL] - copy insertion.sh"
+  copy:
+    src: insert_into.sh
+    dest: /opt/central/insert_into.sh
+    mode: 0755
+
+- name: "[CENTRAL] - cron"
+  copy:
+    src: cron_central
+    dest: /etc/cron.d/cron_central
+  notify: cron_restart
+

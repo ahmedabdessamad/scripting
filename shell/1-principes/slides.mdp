@@ -1,0 +1,80 @@
+%title: SHELL - Objectifs
+%author: xavki
+
+
+
+
+-> SHELL mais pas en mode classique <-
+=========
+
+
+
+<br>
+* éviter le schéma classique : "hello world.."
+
+<br>
+* être opérationnel : scripting par l'exemple
+
+<br>
+* 1ère objectif : reproduire le script de déploiement docker
+
+* voir au fur et à mesure les fonctionnalités utiles
+
+* on apprend les choses et on les met en application
+
+
+-------------------------------------------------------------
+
+
+-> Cahier des charges : Objectifs du script <-
+
+
+
+
+
+* créer une plateforme de conteneurs similaire à des VM
+
+* pouvoir cleaner les conteneurs créés
+
+* pour avoir des infos : ip, nom, user
+
+* redémarrer les conteneurs si arrêtés
+
+* communication via ssh
+
+* système d'identification des conteneurs produit par le script
+
+* à découvrir : affichage, conditions, variables, itérations, arguments, docker, boucles
+
+--------------------------------------------------------------
+
+
+-> Utilisation de git <-
+
+
+* essayer de s'organiser
+
+* branche dev / bracnhe prod
+
+* push
+
+
+-> Entête de fichier <-
+
+<br>
+* spécification de l'interpréteur (shebang)
+
+```
+#!/bin/bash
+```
+<br>
+
+* commenter vos scripts (auteur, description, date, version...)
+
+<br>
+* echo : affichage de l'aide par défaut
+	- create-debian
+	- drop
+	- infos
+	- start
+	- ansible

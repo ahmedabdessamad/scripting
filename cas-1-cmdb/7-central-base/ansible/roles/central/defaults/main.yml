@@ -1,0 +1,12 @@
+maria_packages:
+  - software-properties-common
+  - mariadb-server
+  - mariadb-client
+  - python-mysqldb
+  - python-flask
+
+maria_databases:
+    - collect
+
+maria_user: xavki
+maria_pwd: xavki

@@ -1,0 +1,21 @@
+%title: AWK
+%author: xavki
+
+
+
+
+
+-> AWK : gsub() <-
+=========
+
+
+
+<br>
+*  gsub("pattern","remplacement","champs") 
+
+<br>
+Exemple :
+
+```
+cat myfile.txt | awk '{gsub("ier","ki",$2);print$2}'
+```

@@ -1,0 +1,40 @@
+%title: AWK
+%author: xavki
+
+
+
+
+
+-> AWK : suppression des doublons par les tableaux <-
+=========
+
+<br>
+
+* un tableau
+
+nom_tab[index] = "valeur"
+
+Rq : un index peut être un chiffre ou un string
+
+<br>
+nom[paul] = "Durand"
+nom[pierre] = "Martin"
+...
+
+<br>
+pour supprimer les doublons de lignes ?
+
+tab[contenu_ligne]++
+
+création d'un tableau avec une valeur de 1 si on a une ligne
+	=> si une deuxième fois la même ligne : valeur prend +1
+	=> du coup si on affiche le tableau on a plus les doublons
+
+
+```
+cat myfile.txt | 
+awk '
+{tab[$0]++}
+END{for (line in tab) print line}'
+```
+

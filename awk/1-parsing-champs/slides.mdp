@@ -1,0 +1,55 @@
+%title: AWK - les champs
+%author: xavki
+
+-> AWK <-
+=========
+
+<br>
+* utile pour les manipulations de tableaux
+
+<br>
+* en ligne de commande (oneline)
+
+<br>
+* ou en fichier de script (moins courant)
+
+---------------------------------------------
+
+-> Manipulation tableau en CLI <-
+
+* séparateur par défaut = tabulation
+
+```
+cat monfichier.txt | awk '{print $1" || "$2}'
+```
+
+$1 = champs 1
+$2 = champs 2
+...
+$0 = tous les champs
+
+<br>
+* définition du séparateur option -F ";"
+
+```
+cat monfichier.csv | awk -F ";" '{print $1}'
+```
+
+<br>
+* si concaténation
+
+```
+cat monfichier.csv | awk -F ";" '{print $1"||"$2}'
+```
+
+
+---------------------------------------------
+
+-> Exemple fichier de script <-
+
+```
+#!/usr/bin/awk -f 
+BEGIN {
+print "Bonjour xavki,\nje suis ton script awk !"
+}
+```

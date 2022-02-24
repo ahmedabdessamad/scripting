@@ -1,0 +1,4 @@
+- name: "[XAVKI] - maria"
+  hosts: mariadb
+  roles:
+    - mariadb

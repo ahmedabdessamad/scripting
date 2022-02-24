@@ -1,0 +1,28 @@
+%title: AWK
+%author: xavki
+
+
+
+
+
+-> AWK : combinaison pour analyser de logs <-
+=========
+
+
+<br>
+Exemple :
+
+```
+cat /var/log/apache2/access.log | 
+awk '
+{
+match($4,/\[(.*):/)
+gsub(":.*|\[","",$4)
+tab[$4" - "$1]++
+}
+END
+{
+for (datehost in tab)
+print datehost" - hits: "tab[date]
+}'
+```

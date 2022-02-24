@@ -1,0 +1,44 @@
+
+- name : "[MARIA] - apt-get update"
+  apt:
+    update_cache: yes
+
+
+- name : "[MARIA] - install"
+  apt:
+    name: "{{ maria_packages }}"
+
+- name : "[MARIA] - start service"
+  service:
+    name: mariadb
+    state: started
+
+
+- name : "[MARIA] - install DB"
+  mysql_db:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ maria_databases }}"
+
+- name: "[MARIA] - change my.cnf"
+  lineinfile:
+    dest: "/etc/mysql/my.cnf"
+    line: "{{ item }}"
+  with_items:
+    - "[mysqld]"
+    - "bind-address  = 0.0.0.0"
+    - "# skip-networking"
+  notify: maria_restart
+
+- name: "[MARIA] - create user"
+  mysql_user:
+    name: "{{ maria_user }}"
+    password: "{{ maria_pwd }}"
+    priv: "*.*:ALL"
+    host: "%"
+
+- name: "[MARIA] - restart"
+  service:
+    name: mariadb
+    state: restarted
+    enabled: yes

@@ -1,0 +1,34 @@
+%title: AWK
+%author: xavki
+
+
+
+
+
+-> AWK : cumul et définition de variables <-
+=========
+
+
+
+<br>
+* variable : pas de $ juste son nom
+
+<br>
+* pratique pour faire des cumuls car on peut l'incrémenter pour faire un print dans END
+
+<br>
+Exemple :
+
+```
+cat myfile.txt | 
+
+awk -F "" '
+{
+print NF;
+total = total + NF;
+}
+END{
+print "Nb mots : " total
+}
+'
+```

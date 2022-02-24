@@ -1,0 +1,28 @@
+%title: AWK
+%author: xavki
+
+
+
+
+
+-> AWK : match <-
+=========
+
+
+<br>
+* match(field,/pattern/) : permet de capturer un pattern
+
+* print substr($0, RSTART, RLENGTH) : pour afficher la capture avec partir d'un découpage
+
+<br>
+Exemple :
+
+```
+cat texte.txt | 
+awk '
+match($0,/192(.[0-9]+)+/)
+{
+print substr($0, RSTART, RLENGTH)
+}
+'
+```

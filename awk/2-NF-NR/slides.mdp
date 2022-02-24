@@ -1,0 +1,32 @@
+%title: AWK - FN / NR / END
+%author: xavki
+
+-> AWK <-
+=========
+
+<br>
+* FN : fields number
+
+<br>
+* RN : rows number
+
+<br>
+* END : début du footer (pied de tableau)
+
+---------------------------------------------
+
+* Impriner le numéro de chaque ligne
+```
+cat tab1.txt | awk '{print NR " => "$0 }'
+```
+
+* Impriner le nombre de champs
+```
+cat tab1.txt | awk '{print NF " => "$0 }'
+```
+
+* Impriner le numéro de chaque ligne
+```
+cat tab1.txt | awk 'END {print NR}'
+```
+

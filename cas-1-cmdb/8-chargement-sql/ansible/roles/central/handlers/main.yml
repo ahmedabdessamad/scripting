@@ -1,0 +1,9 @@
+- name: maria_restart
+  service:
+    name: mariadb
+    state: restarted
+
+- name: "cron_restart"
+  service:
+    name: cron
+    state: restarted

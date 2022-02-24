@@ -1,0 +1,49 @@
+%title: AWK
+%author: xavki
+
+
+
+
+
+-> AWK : générer du SQL <-
+=========
+
+<br>
+
+* AWK = mise en forme de fichier ligne à ligne, de tableaux, etc
+
+* command line : pipper avec cli psql / mysql...
+
+* difficulté : avoir de bons yeux et naviguer dans les quotes
+
+<br>
+
+Exemple: faire un ps aux et créer un "insert into" sur user, pid et command
+sans les process entre crochets
+
+-----------------------------------------------------------------------------------
+
+-> Pas à pas <-
+
+Tout d'abord
+
+```
+ps aux | awk '
+! /\[/
+{print $1 $2 $11}
+'
+```
+
+
+ensuite ajout de INSERT...
+
+```
+ps aux | awk '!/\[/ {print "INSERT INTO process values ("$1" "$2" "$3");" }'
+```
+
+
+puis les quotes
+
+```
+ps aux | awk '!/\[/ {print "INSERT INTO process values ('\''"$1"'\'','\''"$2"'\'', '\''"$11"'\'');"}'
+```

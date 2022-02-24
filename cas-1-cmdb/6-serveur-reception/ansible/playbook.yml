@@ -1,0 +1,11 @@
+- name: "[XAVKI] - maria"
+  hosts: mariadb
+  roles:
+    - mariadb
+    - collect
+
+
+- name: "[XAVKI] - central"
+  hosts: central
+  roles:
+    - central
